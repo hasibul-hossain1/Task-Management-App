@@ -47,7 +47,7 @@ export function Button({
   const isDisabled = disabled || loading;
   const content = children ?? title;
   const textColor =
-    variant === "solid" ? colors.neutral.white : colors.neutral[900];
+    variant === "solid" ? colors.text.inverse : colors.primary[700];
 
   return (
     <Pressable
@@ -87,7 +87,7 @@ export function Button({
 const styles = StyleSheet.create({
   base: {
     alignItems: "center",
-    borderRadius: 8,
+    borderRadius: 16,
     flexDirection: "row",
     gap: 8,
     justifyContent: "center",
@@ -104,17 +104,22 @@ const styles = StyleSheet.create({
   },
   lg: {
     minHeight: 52,
-    paddingHorizontal: 22,
+    paddingHorizontal: 24,
     paddingVertical: 12,
   },
   solid: {
-    backgroundColor: colors.neutral[900],
-    borderColor: colors.neutral[900],
+    backgroundColor: colors.primary[600],
+    borderColor: colors.primary[600],
     borderWidth: 1,
+    elevation: 4,
+    shadowColor: colors.shadow.emerald,
+    shadowOffset: { height: 5, width: 0 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
   },
   outline: {
-    backgroundColor: colors.neutral.white,
-    borderColor: colors.neutral[300],
+    backgroundColor: colors.surface.card,
+    borderColor: colors.border.default,
     borderWidth: 1,
   },
   ghost: {
@@ -126,14 +131,14 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
   },
   disabled: {
-    opacity: 0.5,
+    opacity: 0.45,
   },
   pressed: {
-    opacity: 0.82,
+    transform: [{ scale: 0.98 }],
   },
   text: {
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: "800",
   },
   icon: {
     alignItems: "center",

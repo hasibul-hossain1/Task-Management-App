@@ -66,6 +66,12 @@ const Form = () => {
       behavior={Platform.OS === "ios" ? "padding" : undefined}
       style={styles.screen}
     >
+      <View pointerEvents="none" style={styles.blobLayer}>
+        <View style={[styles.blob, styles.mintBlob]} />
+        <View style={[styles.blob, styles.peachBlob]} />
+        <View style={[styles.blob, styles.skyBlob]} />
+      </View>
+
       <View style={styles.form}>
         <View style={styles.intro}>
           <Text style={styles.heading}>New Task</Text>
@@ -109,7 +115,7 @@ const Form = () => {
               <Ionicons
                 name="calendar-outline"
                 size={22}
-                color={colors.accent[600]}
+                color={colors.primary[600]}
               />
               <View style={styles.scheduleText}>
                 <Text style={styles.scheduleCaption}>Date</Text>
@@ -128,7 +134,7 @@ const Form = () => {
               <Ionicons
                 name="time-outline"
                 size={22}
-                color={colors.accent[600]}
+                color={colors.primary[600]}
               />
               <View style={styles.scheduleText}>
                 <Text style={styles.scheduleCaption}>Time</Text>
@@ -175,24 +181,67 @@ export default Form;
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: colors.neutral[100],
+    backgroundColor: colors.background.base,
     flex: 1,
+    overflow: "hidden",
+  },
+  blobLayer: {
+    bottom: 0,
+    left: 0,
+    position: "absolute",
+    right: 0,
+    top: 0,
+  },
+  blob: {
+    borderRadius: 999,
+    position: "absolute",
+  },
+  mintBlob: {
+    backgroundColor: colors.background.glow,
+    height: 220,
+    right: -92,
+    top: -58,
+    width: 220,
+  },
+  peachBlob: {
+    backgroundColor: colors.background.peach,
+    height: 190,
+    left: -82,
+    top: 146,
+    width: 190,
+  },
+  skyBlob: {
+    backgroundColor: colors.background.sky,
+    bottom: -76,
+    height: 210,
+    right: -72,
+    width: 210,
   },
   form: {
-    gap: 20,
-    padding: 20,
+    gap: 22,
+    padding: 22,
+    zIndex: 1,
   },
   intro: {
-    gap: 4,
-    marginBottom: 4,
+    backgroundColor: colors.background.soft,
+    borderColor: colors.border.subtle,
+    borderRadius: 22,
+    borderWidth: 1,
+    gap: 6,
+    marginBottom: 2,
+    padding: 18,
+    shadowColor: colors.shadow.soft,
+    shadowOffset: { height: 6, width: 0 },
+    shadowOpacity: 0.07,
+    shadowRadius: 14,
   },
   heading: {
-    color: colors.neutral[900],
-    fontSize: 24,
-    fontWeight: "700",
+    color: colors.text.primary,
+    fontSize: 28,
+    fontWeight: "900",
   },
   subheading: {
-    color: colors.neutral[500],
+    color: colors.text.muted,
     fontSize: 15,
     lineHeight: 21,
   },
@@ -205,15 +254,15 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   labelAccent: {
-    backgroundColor: colors.accent[600],
+    backgroundColor: colors.accent[500],
     borderRadius: 999,
-    height: 16,
+    height: 18,
     width: 4,
   },
   label: {
-    color: colors.neutral[700],
+    color: colors.text.secondary,
     fontSize: 15,
-    fontWeight: "700",
+    fontWeight: "800",
   },
   scheduleRow: {
     flexDirection: "row",
@@ -221,42 +270,53 @@ const styles = StyleSheet.create({
   },
   scheduleButton: {
     alignItems: "center",
-    backgroundColor: colors.neutral.white,
-    borderColor: colors.neutral[300],
-    borderRadius: 8,
+    backgroundColor: colors.surface.card,
+    borderColor: colors.border.default,
+    borderRadius: 16,
     borderWidth: 1,
+    elevation: 2,
     flex: 1,
     flexDirection: "row",
     gap: 10,
-    minHeight: 58,
-    paddingHorizontal: 14,
+    minHeight: 64,
+    paddingHorizontal: 16,
+    shadowColor: colors.shadow.soft,
+    shadowOffset: { height: 4, width: 0 },
+    shadowOpacity: 0.06,
+    shadowRadius: 10,
   },
   scheduleButtonActive: {
-    borderColor: colors.accent[600],
+    backgroundColor: colors.primary[50],
+    borderColor: colors.primary[600],
   },
   pressed: {
-    opacity: 0.82,
+    transform: [{ scale: 0.98 }],
   },
   scheduleText: {
     flex: 1,
     gap: 2,
   },
   scheduleCaption: {
-    color: colors.neutral[500],
+    color: colors.text.muted,
     fontSize: 12,
-    fontWeight: "600",
+    fontWeight: "800",
   },
   scheduleValue: {
-    color: colors.neutral[900],
+    color: colors.text.primary,
     fontSize: 15,
-    fontWeight: "700",
+    fontWeight: "800",
   },
   pickerCard: {
-    backgroundColor: colors.neutral.white,
-    borderColor: colors.neutral[300],
-    borderRadius: 8,
+    backgroundColor: colors.surface.card,
+    borderColor: colors.border.default,
+    borderRadius: 16,
     borderWidth: 1,
+    elevation: 2,
     overflow: "hidden",
+    shadowColor: colors.shadow.soft,
+    shadowOffset: { height: 4, width: 0 },
+    shadowOpacity: 0.06,
+    shadowRadius: 10,
   },
   doneButton: {
     alignSelf: "flex-end",
@@ -264,9 +324,9 @@ const styles = StyleSheet.create({
     paddingTop: 12,
   },
   doneButtonText: {
-    color: colors.accent[600],
+    color: colors.primary[600],
     fontSize: 15,
-    fontWeight: "700",
+    fontWeight: "800",
   },
   submitButton: {
     marginTop: 4,

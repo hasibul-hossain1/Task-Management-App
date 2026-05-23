@@ -12,10 +12,11 @@ export default function RootLayout() {
           headerShadowVisible: false,
           headerShown: true,
           headerStyle: {
-            backgroundColor: colors.neutral[200],
+            backgroundColor: colors.background.base,
           },
-          headerTintColor: colors.neutral[900],
+          headerTintColor: colors.text.primary,
           headerTitleStyle: {
+            color: colors.text.primary,
             fontWeight: "700",
           },
           title: "Create Task",

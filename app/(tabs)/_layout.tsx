@@ -10,10 +10,15 @@ const TabsLayout = () => {
     return (
         <Tabs
             screenOptions={{
+                headerShadowVisible: false,
                 headerStyle: {
-                    backgroundColor: colors.neutral[200],
+                    backgroundColor: colors.background.base,
                 },
-                headerTintColor: colors.neutral[900],
+                headerTintColor: colors.text.primary,
+                headerTitleStyle: {
+                    color: colors.text.primary,
+                    fontWeight: "800",
+                },
                 headerRight: () => (
                     <Button
                         size="sm"
@@ -21,7 +26,7 @@ const TabsLayout = () => {
                             <Ionicons
                                 name="add"
                                 size={24}
-                                color={colors.neutral.white}
+                                color={colors.text.inverse}
                             />
                         }
                         onPress={() => router.push("/form")}
@@ -29,25 +34,29 @@ const TabsLayout = () => {
                     />
                 ),
                 sceneStyle: {
-                    backgroundColor: colors.neutral[100],
+                    backgroundColor: colors.background.base,
                 },
-                tabBarActiveTintColor: colors.accent[600],
-                tabBarInactiveTintColor: colors.neutral[500],
+                tabBarActiveTintColor: colors.primary[600],
+                tabBarInactiveTintColor: colors.text.muted,
+                tabBarLabelStyle: {
+                    fontSize: 12,
+                    fontWeight: "800",
+                },
                 tabBarStyle: {
-                    backgroundColor: colors.neutral[200],
-                    borderColor: colors.neutral[300],
-                    borderRadius: 24,
+                    backgroundColor: colors.background.soft,
+                    borderColor: colors.border.subtle,
+                    borderRadius: 28,
                     borderWidth: 1,
-                    elevation: 4,
-                    height: 64,
-                    marginBottom: 40,
+                    elevation: 8,
+                    height: 68,
+                    marginBottom: 34,
                     marginHorizontal: 16,
                     paddingBottom: 8,
                     paddingTop: 8,
-                    shadowColor: colors.neutral[900],
-                    shadowOffset: { height: 2, width: 0 },
-                    shadowOpacity: 0.08,
-                    shadowRadius: 8,
+                    shadowColor: colors.shadow.soft,
+                    shadowOffset: { height: 8, width: 0 },
+                    shadowOpacity: 0.14,
+                    shadowRadius: 18,
                 },
             }}
         >
