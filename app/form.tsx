@@ -5,6 +5,7 @@ import DateTimePicker, {
 import { router } from "expo-router";
 import { useState } from "react";
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -16,6 +17,8 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { colors } from "@/constants";
+import { db } from "@/src/db";
+import { tasksTable } from "@/src/tasks/schema";
 
 type PickerMode = "date" | "time";
 
@@ -52,13 +55,19 @@ const Form = () => {
       setPickerMode(null);
     }
   };
-  const handleSubmit = () => {
-    console.log({
-      description,
-      dueAt,
-      title,
-    });
-    router.replace("/");
+  const handleSubmit =async () => {
+    try {
+      const result = await db.insert(tasksTable).values({
+        title,
+        description,
+        dueAt:dueAt.toISOString(),
+      })
+      console.log(result);
+      router.replace("/");
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Error", "An error occurred while creating the task.")
+    }
   };
 
   return (

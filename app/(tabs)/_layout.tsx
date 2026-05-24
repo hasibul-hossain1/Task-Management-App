@@ -2,11 +2,15 @@ import { Ionicons } from "@expo/vector-icons";
 import { router, Tabs } from "expo-router";
 import React from "react";
 import { StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Button } from "@/components/ui/Button";
 import { colors } from "@/constants";
 
 const TabsLayout = () => {
+    const insets = useSafeAreaInsets();
+    const bottomTabGap = Math.max(insets.bottom + 12, 24);
+
     return (
         <Tabs
             screenOptions={{
@@ -49,7 +53,7 @@ const TabsLayout = () => {
                     borderWidth: 1,
                     elevation: 8,
                     height: 68,
-                    marginBottom: 34,
+                    marginBottom: bottomTabGap,
                     marginHorizontal: 16,
                     paddingBottom: 8,
                     paddingTop: 8,
